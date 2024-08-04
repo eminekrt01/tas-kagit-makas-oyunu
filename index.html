@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taş, Kağıt, Makas Oyunu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Taş, Kağıt, Makas Oyunu</h1>
+    <p>Seçiminizi yapın:</p>
+    <button onclick="playGame('taş')">Taş</button>
+    <button onclick="playGame('kağıt')">Kağıt</button>
+    <button onclick="playGame('makas')">Makas</button>
+    <p id="result"></p>
+
+    <script>
+        function playGame(playerChoice) {
+            const choices = ['taş', 'kağıt', 'makas'];
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+            
+            let result = '';
+            if (playerChoice === computerChoice) {
+                result = 'Berabere! Bilgisayar da ' + computerChoice + ' seçti.';
+            } else if (
+                (playerChoice === 'taş' && computerChoice === 'makas') ||
+                (playerChoice === 'kağıt' && computerChoice === 'taş') ||
+                (playerChoice === 'makas' && computerChoice === 'kağıt')
+            ) {
+                result = 'Kazandınız! Bilgisayar ' + computerChoice + ' seçti.';
+            } else {
+                result = 'Kaybettiniz. Bilgisayar ' + computerChoice + ' seçti.';
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>
